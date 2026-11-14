@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Para mi Mimi 💜 — Una flor en un universo infinito" />
+    <title>Para mi Mimi 💜</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Dancing+Script:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-mode="rosa">
+    <div class="aurora"></div>
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <button id="sound" aria-label="Activar música" aria-pressed="false">♫ Música</button>
+
+    <main>
+      <small>✦ EN ALGÚN LUGAR DEL UNIVERSO ✦</small>
+
+      <section id="cover">
+        <h1>Para mi Mimi</h1>
+        <p class="sub">Una flor en un universo infinito</p>
+        <button class="art" id="heart" aria-label="Abrir carta">
+          <svg viewBox="0 0 320 330" aria-hidden="true">
+            <defs>
+              <linearGradient id="glass" x2="1" y2="0">
+                <stop stop-color="#ae86d7" stop-opacity=".18" />
+                <stop offset=".5" stop-color="#f1dcff" stop-opacity=".025" />
+                <stop offset="1" stop-color="#b78be8" stop-opacity=".2" />
+              </linearGradient>
+              <radialGradient id="petal">
+                <stop stop-color="#f0baff" />
+                <stop offset=".48" stop-color="#a849dc" />
+                <stop offset="1" stop-color="#48126c" />
+              </radialGradient>
+            </defs>
+            <g class="dome">
+              <path
+                d="M64 280V125C64 3 256 3 256 125V280Z"
+                fill="url(#glass)"
+                stroke="#b493d6"
+                stroke-width="1.5"
+              />
+              <path
+                d="M82 235V130Q82 77 111 58"
+                fill="none"
+                stroke="#f3ddff"
+                stroke-width="5"
+                opacity=".3"
+                stroke-linecap="round"
+              />
+            </g>
+            <path d="M157 275Q175 216 158 148" fill="none" stroke="#8d79b1" stroke-width="6" />
+            <path
+              d="M165 222Q108 177 102 209Q125 240 165 222M165 244Q210 194 224 212Q216 247 165 244"
+              fill="#634489"
+              stroke="#b58cde"
+            />
+            <g class="bloom" fill="url(#petal)" stroke="#db8aff" stroke-width=".8">
+              <path
+                transform="rotate(0 160 140)"
+                d="M160 148C95 150 102 81 149 91C181 98 179 127 160 148Z"
+              />
+              <path
+                transform="rotate(60 160 140)"
+                d="M160 148C95 150 102 81 149 91C181 98 179 127 160 148Z"
+              />
+              <path
+                transform="rotate(120 160 140)"
+                d="M160 148C95 150 102 81 149 91C181 98 179 127 160 148Z"
+              />
+              <path
+                transform="rotate(180 160 140)"
+                d="M160 148C95 150 102 81 149 91C181 98 179 127 160 148Z"
+              />
+              <path
+                transform="rotate(240 160 140)"
+                d="M160 148C95 150 102 81 149 91C181 98 179 127 160 148Z"
+              />
+              <path
+                transform="rotate(300 160 140)"
+                d="M160 148C95 150 102 81 149 91C181 98 179 127 160 148Z"
+              />
+              <path d="M160 150C119 129 135 100 157 110C184 96 199 130 160 150Z" />
+              <path d="M160 145Q137 122 160 117Q181 121 160 145" />
+            </g>
+            <path class="fp" d="M170 172c-6-6-4-14 2-16 6 4 6 12-2 16z" fill="#d783ff" />
+            <path class="fp" d="M150 168c-6-6-4-14 2-16 6 4 6 12-2 16z" fill="#e7a3ff" />
+            <g class="ring">
+              <path
+                d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z"
+                fill="#f0d4ff"
+                class="sp"
+                transform="translate(260 140)"
+              />
+              <path
+                d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z"
+                fill="#f0d4ff"
+                class="sp"
+                transform="translate(210 227)"
+              />
+              <path
+                d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z"
+                fill="#f0d4ff"
+                class="sp"
+                transform="translate(110 227)"
+              />
+              <path
+                d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z"
+                fill="#f0d4ff"
+                class="sp"
+                transform="translate(60 140)"
+              />
+              <path
+                d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z"
+                fill="#f0d4ff"
+                class="sp"
+                transform="translate(110 53)"
+              />
+              <path
+                d="M0-6L1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z"
+                fill="#f0d4ff"
+                class="sp"
+                transform="translate(210 53)"
+              />
+            </g>
+            <ellipse cx="160" cy="280" rx="111" ry="12" fill="#563568" stroke="#b58cde" />
+            <rect
+              x="49"
+              y="280"
+              width="222"
+              height="15"
+              rx="6"
+              fill="#211329"
+              stroke="#8960ad"
+            />
+          </svg>
+        </button>
+        <p class="hint">TOCA LA ROSA PARA DESCUBRIR</p>
+      </section>
+
+      <section id="letter" hidden>
+        <div class="tiny">♡</div>
+        <h1>Para mi Mimi 💜</h1>
+
+        <figure class="photo-card" id="photo-card" title="Toca para soltar pétalos 💜">
+          <img src="img/foto.png" alt="Nosotros juntos 💜" loading="eager" />
+          <figcaption class="photo-caption">Tú y yo 💜</figcaption>
+        </figure>
+
+        <div id="message" aria-live="polite"></div>
+
+        <div id="finale" hidden>
+          <div class="flowers" aria-hidden="true">✿ ❀ ✿</div>
+          <svg
+            id="constellation"
+            viewBox="0 0 280 230"
+            role="img"
+            aria-label="Corazón formado por estrellas"
+          ></svg>
+          <p class="signature">
+            De todas las casualidades que pudieron pasar en este universo infinito mi favorita
+            siempre será haber coincidido contigo
+          </p>
+          <p>Te quiero y te amo muchísimo mi Mimi 💜</p>
+          <button id="back">Volver al inicio</button>
+        </div>
+      </section>
+
+      <footer>UN PEQUEÑO INFINITO · PARA TI</footer>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

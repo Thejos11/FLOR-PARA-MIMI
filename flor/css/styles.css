@@ -1,0 +1,579 @@
+:root {
+  --bg: #08050f;
+  --tx: #f7eeff;
+  --soft: #dccbee;
+  --acc: #c8a5f1;
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+  color: var(--tx);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Fondo de aurora y estrellas */
+.aurora {
+  position: fixed;
+  inset: -10%;
+  z-index: 0;
+  will-change: transform;
+  background:
+    radial-gradient(circle at 30% 30%, #6a2bb0aa, transparent 40%),
+    radial-gradient(circle at 75% 70%, #3a1470cc, transparent 45%),
+    radial-gradient(circle at 60% 20%, #b0307a44, transparent 35%);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  width: min(92%, 440px);
+  padding: 76px 24px 44px;
+}
+
+small,
+footer,
+.hint {
+  font: 10px Arial, sans-serif;
+  letter-spacing: 3px;
+  color: var(--acc);
+}
+
+small {
+  animation: appear 1.6s 0.2s both;
+}
+
+footer {
+  margin-top: 45px;
+}
+
+.hint {
+  animation: blink 2.6s ease-in-out infinite;
+}
+
+h1 {
+  font: 400 clamp(40px, 11vw, 54px) / 1.15 'Dancing Script', cursive;
+  background: linear-gradient(90deg, #fff, #e2b6ff, #fff, #e2b6ff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+  margin: 10px 0;
+}
+
+.sub {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--soft);
+  animation: appear 1.6s 0.6s both;
+}
+
+/* Botones */
+button {
+  cursor: pointer;
+  color: #f2dfff;
+  background: #7c3aed25;
+  border: 1px solid #a66df4;
+  border-radius: 30px;
+  padding: 14px 24px;
+  font: 13px Arial, sans-serif;
+  letter-spacing: 1px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background: #7c3aed55;
+  transform: translateY(-2px);
+}
+
+#sound {
+  position: fixed;
+  right: 18px;
+  top: calc(18px + env(safe-area-inset-top, 0px));
+  z-index: 3;
+  padding: 12px;
+}
+
+/* Ilustración de la rosa encantada */
+.art {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: visible;
+  animation: float 6s ease-in-out infinite, appear 1.6s 0.4s both;
+}
+
+.art:hover {
+  background: none;
+  transform: none;
+}
+
+.art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 52svh;
+  overflow: visible;
+  transition: opacity 1s;
+}
+
+.art::before {
+  content: '';
+  position: absolute;
+  inset: 6% 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #9a45e777, transparent 65%);
+  z-index: -1;
+}
+
+.art:focus-visible {
+  outline: 2px solid #d8a3ff;
+  border-radius: 20px;
+}
+
+/* Carta y mensaje */
+#letter:not([hidden]) {
+  animation: appear 1s ease;
+}
+
+.tiny {
+  font-size: 60px;
+  color: #dbabff;
+  text-shadow: 0 0 30px #a855f7;
+  animation: beat 1.6s ease-in-out infinite;
+}
+
+/* Marco romántico para la foto */
+.photo-card {
+  position: relative;
+  margin: 22px auto 28px;
+  padding: 12px 12px 16px;
+  max-width: 340px;
+  background: linear-gradient(145deg, rgba(168, 85, 247, 0.16), rgba(33, 19, 41, 0.75));
+  border: 1px solid rgba(216, 163, 255, 0.45);
+  border-radius: 22px;
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.55),
+    0 0 28px rgba(168, 85, 247, 0.28),
+    inset 0 0 18px rgba(240, 186, 255, 0.12);
+  backdrop-filter: blur(8px);
+  animation: appear 1.4s 0.3s both, float 6s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.photo-card::before {
+  content: '✦';
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #170d26;
+  color: #e5c1ff;
+  border: 1px solid rgba(216, 163, 255, 0.5);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  font-size: 12px;
+  box-shadow: 0 0 12px #a855f7;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(242, 223, 255, 0.25);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.015);
+  filter: brightness(1.06);
+}
+
+.photo-caption {
+  margin-top: 12px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 24px;
+  color: #f0d9ff;
+  text-shadow: 0 0 14px rgba(168, 85, 247, 0.7);
+}
+
+#message {
+  margin-top: 14px;
+}
+
+#message p {
+  font-size: 21px;
+  line-height: 1.7;
+  color: var(--soft);
+  text-align: left;
+  margin: 0 0 22px;
+}
+
+.w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: wordin 0.7s ease forwards;
+}
+
+/* Sección final y constelación */
+#finale {
+  margin-top: 36px;
+}
+
+#finale p {
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--soft);
+  animation: appear 2s both;
+}
+
+#finale .signature {
+  font-style: italic;
+  color: #ecd0ff;
+  margin-top: 10px;
+}
+
+#finale button {
+  margin-top: 18px;
+  animation: appear 2s 1s both;
+}
+
+.flowers {
+  font-size: 42px;
+  color: #d8a3ff;
+  letter-spacing: 12px;
+  text-shadow: 0 0 20px #a855f7;
+  animation: sway 4s ease-in-out infinite;
+}
+
+#constellation {
+  width: 100%;
+  max-width: 300px;
+  overflow: visible;
+  animation: beat 1.8s ease-in-out 4s infinite;
+}
+
+#constellation circle {
+  fill: #eac9ff;
+  animation: gather 2.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--delay);
+}
+
+#constellation circle:nth-child(4n) {
+  animation:
+    gather 2.8s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+    tw 3s ease-in-out infinite;
+  animation-delay: var(--delay), calc(3s + var(--delay) * 4);
+}
+
+#constellation .ln {
+  fill: none;
+  stroke: #d9a8ff88;
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 3.5s 2.2s ease forwards;
+}
+
+/* Elementos animados del SVG */
+.ring {
+  transform-origin: 160px 140px;
+  animation: spin 26s linear infinite;
+}
+
+.sp {
+  animation: tw 2.4s ease-in-out infinite;
+}
+
+.sp:nth-child(2n) {
+  animation-delay: 0.8s;
+}
+
+.sp:nth-child(3n) {
+  animation-delay: 1.5s;
+}
+
+.fp {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fall 7s ease-in infinite;
+}
+
+.fp + .fp {
+  animation-delay: 3.5s;
+}
+
+.bloom {
+  transform-origin: 160px 140px;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.flap {
+  transform-origin: 160px 112px;
+  transition: transform 0.8s;
+}
+
+.paper {
+  transition: transform 0.8s;
+}
+
+.seal {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.35s;
+  animation: glow 2.4s ease-in-out infinite;
+}
+
+.opening .flap {
+  transform: scaleY(-1);
+}
+
+.opening .paper {
+  transform: translateY(-65px);
+}
+
+.opening .seal {
+  opacity: 0;
+}
+
+.opening .bloom {
+  animation: none;
+  transform: scale(1.25);
+  filter: brightness(1.5) drop-shadow(0 0 18px #e3a5ff);
+  transition: all 1s 0.6s;
+}
+
+.opening .ring {
+  animation-duration: 2s;
+}
+
+.opening svg {
+  opacity: 1;
+}
+
+.dome {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: transform 1.4s cubic-bezier(0.45, 0, 0.2, 1), opacity 1.2s ease 0.2s;
+}
+
+.opening .dome {
+  transform: translateY(-170px) rotate(-7deg);
+  opacity: 0;
+}
+
+.opening .fp {
+  animation-play-state: paused;
+}
+
+/* Animaciones */
+@keyframes drift {
+  to {
+    transform: translate(3%, 2%) scale(1.06);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.08);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes wordin {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tw {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes sway {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes glow {
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translate(0, 0) rotate(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-34px, 125px) rotate(220deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gather {
+  from {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0.1;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Accesibilidad y diseño adaptable */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .w {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  #constellation .ln {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 64px 18px 36px;
+  }
+  #message p {
+    font-size: 19px;
+  }
+  #finale p {
+    font-size: 18px;
+  }
+  .tiny {
+    font-size: 48px;
+  }
+  #sound {
+    padding: 10px;
+    font-size: 12px;
+  }
+  .photo-card {
+    padding: 10px 10px 14px;
+  }
+  .photo-caption {
+    font-size: 21px;
+  }
+}
+
+@media (max-height: 620px) {
+  .art svg {
+    max-height: 42svh;
+  }
+}
+
+@media (hover: none) {
+  h1 {
+    animation: none;
+    background-position: 0 0;
+  }
+}
